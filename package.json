@@ -2,7 +2,7 @@
   "name": "ko-bindings",
   "version": "0.0.0",
   "description": "Additional knockout bindings.",
-  "main": "dist/ko-bindings.js",
+  "main": "ko-bindings/ko-bindings.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
