@@ -4,7 +4,7 @@
   "description": "Additional knockout bindings.",
   "main": "ko-bindings/ko-bindings.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack && babel ko-bindings/ --presets babel-preset-es2015 --out-dir dist/"
   },
   "repository": {
     "type": "git",
@@ -14,5 +14,17 @@
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/EikosPartners/ko-bindings/issues"
+  },
+  "dependencies": {
+    "knockout": "^3.4.0",
+    "webpack": "^1.13.1",
+    "scalejs" : "git+https://github.com/EikosPartners/scalejs.git#es6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "uglifyjs": "^2.4.10",
+    "webpack-node-externals": "^1.2.0"
   }
 }

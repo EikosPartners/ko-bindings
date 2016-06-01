@@ -1,22 +1,22 @@
 import core from 'scalejs.core';
 import ko from 'knockout';
-import 'extensions/ko-bindings/slideVisible';
-import 'extensions/ko-bindings/splitter';
-import 'extensions/ko-bindings/clickoff';
-import 'extensions/ko-bindings/showContainer';
-import 'extensions/ko-bindings/profileImage';
-import 'extensions/ko-bindings/hideOnResize';
-import 'extensions/ko-bindings/affix';
-import 'extensions/ko-bindings/numberValue';
-import 'extensions/ko-bindings/floatValue';
-import 'extensions/ko-bindings/renderToPoint';
-import 'extensions/ko-bindings/datepicker';
-import 'extensions/ko-bindings/showAllAuto';
-import 'extensions/ko-bindings/hover';
-import 'extensions/ko-bindings/fixedTableHeader';
-import 'extensions/ko-bindings/autosize';
-import 'extensions/ko-bindings/ajaxForm';
-import 'extensions/ko-bindings/keepOpen';
+import './slideVisible';
+import './splitter';
+import './clickoff';
+import './showContainer';
+import './profileImage';
+import './hideOnResize';
+import './affix';
+import './numberValue';
+import './floatValue';
+import './renderToPoint';
+import './datepicker';
+import './showAllAuto';
+import './hover';
+import './fixedTableHeader';
+import './autosize';
+import './ajaxForm';
+import './keepOpen';
     
 
     ko.bindingHandlers.comment = {
