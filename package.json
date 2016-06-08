@@ -4,7 +4,8 @@
   "description": "Additional knockout bindings.",
   "main": "dist/ko-bindings.js",
   "scripts": {
-    "build": "babel src/ --presets babel-preset-es2015 --out-dir dist/"
+    "build": "babel src/ --presets babel-preset-es2015 --out-dir dist/",
+    "postinstall": "cp -r dist/ ./"
   },
   "repository": {
     "type": "git",
