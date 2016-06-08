@@ -1,11 +1,11 @@
 {
   "name": "ko-bindings",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Additional knockout bindings.",
   "main": "dist/ko-bindings.js",
   "scripts": {
     "build": "babel src/ --presets babel-preset-es2015 --out-dir dist/",
-    "postinstall": "cp -r dist/ ./"
+    "postinstall": "copyup dist/*.js ./"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,9 @@
     "url": "https://github.com/EikosPartners/ko-bindings/issues"
   },
   "dependencies": {
+    "copyfiles": "^0.2.1",
     "knockout": "^3.4.0",
-    "scalejs" : "git+https://github.com/EikosPartners/scalejs.git#es6"
+    "scalejs": "git+https://github.com/EikosPartners/scalejs.git#es6"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
