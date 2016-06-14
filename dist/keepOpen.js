@@ -10,6 +10,11 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * TODO - description
+ * @module keepOpen
+ */
+
 _knockout2.default.bindingHandlers.keepOpen = {
     init: function init(element, valueAccessor) {
         var $button = (0, _jquery2.default)(element),

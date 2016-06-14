@@ -1,12 +1,16 @@
 import ko from 'knockout';
 import $ from 'jquery';
 import 'knockout-jqAutocomplete';
-    
-    
+
+/**
+ * TODO - description
+ * @module showAllAuto
+ */
+
     ko.bindingHandlers.jqAuto.options = {
         minLength: 0
     };
-    
+
     ko.bindingHandlers.showAllAuto = {
         init: function (element, valueAccessor, allBindings) {
             var showAll = valueAccessor(),
@@ -17,7 +21,7 @@ import 'knockout-jqAutocomplete';
                     $(this).autocomplete('search', typeof showAll === 'string' ? showAll : $(this).val());
                 });
             }
-            
+
             $(element).bind('blur', function () {
                 var val = $(element).val();
                 if(val === '') {
@@ -26,5 +30,3 @@ import 'knockout-jqAutocomplete';
             });
         }
     }
-
-

@@ -2,7 +2,11 @@ import core from 'scalejs.core';
 import ko from 'knockout';
 import Pikaday from 'pikaday';
 import moment from 'moment';
-    
+
+/**
+ * TODO - description
+ * @module datepicker
+ */
 
     var clone = core.object.clone;
 
@@ -92,14 +96,14 @@ import moment from 'moment';
                 raw(this.getMoment().format(rawFormat));
                 errorObservable && errorObservable(null);
             }
-            
+
             minDate = parseDateExpression(minDate);
             maxDate = parseDateExpression(maxDate);
-            
+
             // remove minDate/maxDate from date picker as it wipes it out (use disableDatFn instead)
             delete date.minDate;
             delete date.maxDate;
-            
+
             function dateInRange(d) {
                 var valid = true;
                 if (minDate) {
@@ -206,10 +210,9 @@ import moment from 'moment';
                 // finally, the user has updated the date and needs to be set
                 picker.setDate(element.value);
             });
-            
+
             ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
                 picker.destroy();
             });
         }
     }
-

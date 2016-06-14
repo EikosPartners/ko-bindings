@@ -1,5 +1,10 @@
 import ko from 'knockout';
-       
+
+/**
+ * TODO - description
+ * @module floatValue
+ */
+
     ko.bindingHandlers.floatValue = {
         init: function (element, valueAccessor){
             var input = valueAccessor();

@@ -1,6 +1,12 @@
 import ko from 'knockout';
 import autosize from 'autosize';
-    
+
+
+/**
+ * TODO - description
+ * @module autosize
+ */
+
     ko.bindingHandlers.autosize = {
         init: function (element, valueAccessor) {
             function applyAutosize() {
@@ -10,7 +16,7 @@ import autosize from 'autosize';
             function destroyAutosize () {
                 autosize.destroy(element);
             }
-            
+
             element.addEventListener('focus', applyAutosize);
             element.addEventListener('focusout', destroyAutosize);
 
@@ -20,5 +26,3 @@ import autosize from 'autosize';
             });
         }
     }
-
-

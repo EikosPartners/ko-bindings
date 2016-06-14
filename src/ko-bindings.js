@@ -17,8 +17,11 @@ import './fixedTableHeader';
 import './autosize';
 import './ajaxForm';
 import './keepOpen';
-    
 
+/**
+ * TODO - description
+ * @module comment
+ */
     ko.bindingHandlers.comment = {
         init: function (element, valueAccessor) {
             var val = ko.unwrap(valueAccessor()),
@@ -31,6 +34,3 @@ import './keepOpen';
     ko.virtualElements.allowedBindings.comment = true;
 
     core.registerExtension({ ko: ko });
-
-
-

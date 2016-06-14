@@ -1,5 +1,10 @@
 import ko from 'knockout';
-    
+
+/**
+ * TODO - description
+ * @module numberValue
+ */
+
     ko.bindingHandlers.numberValue = {
         init: function (element, valueAccessor){
             var input = valueAccessor();

@@ -10,6 +10,11 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * TODO - description
+ * @module fixedTableHeader
+ */
+
 _knockout2.default.bindingHandlers.fixedTableHeader = {
     init: function init(element, valueAccessor) {
         var $table = (0, _jquery2.default)(element),

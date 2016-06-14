@@ -14,6 +14,11 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * TODO - description
+ * @module profileImage
+ */
+
 var token,
     defaultUrl = '/gmep/images/default-profile-photo.png',
     get = _scalejs2.default.object.get; /*global define */

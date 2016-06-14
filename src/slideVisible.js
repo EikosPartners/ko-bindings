@@ -1,6 +1,11 @@
 import ko from 'knockout';
 import $ from 'jquery';
-    
+
+/**
+ * TODO - description
+ * @module slideVisible
+ */
+
     ko.bindingHandlers.slideVisible = {
         init: function (element, valueAccessor) {
             var isVisible = ko.unwrap(valueAccessor());
@@ -21,5 +26,3 @@ import $ from 'jquery';
             }
         }
     }
-
-

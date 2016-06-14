@@ -378,10 +378,10 @@ var splitterCounter = 0;
     });
 };
 
-
-
-
-
+/**
+ * TODO - description
+ * @module splitter
+ */
 
     ko.bindingHandlers.splitter = {
         init: function (element, valueAccessor) {

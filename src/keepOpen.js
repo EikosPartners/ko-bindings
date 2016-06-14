@@ -1,13 +1,17 @@
 import ko from 'knockout';
 import $ from 'jquery';
-      
-    
+
+/**
+ * TODO - description
+ * @module keepOpen
+ */
+
     ko.bindingHandlers.keepOpen = {
         init: function (element, valueAccessor) {
         	var $button = $(element),
-        		$container = $button.closest('.row-actions-container'), // make configurable 
+        		$container = $button.closest('.row-actions-container'), // make configurable
         		options = valueAccessor();
-        
+
         	function openedContainer (){
         		$container.addClass('opened');
         	}
@@ -20,4 +24,3 @@ import $ from 'jquery';
 	        ko.applyBindingsToNode(element, { clickOff: closedContainer });
         }
     };
-  

@@ -10,6 +10,11 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * TODO - description
+ * @module hover
+ */
+
 _knockout2.default.bindingHandlers.hover = {
     init: function init(element, valueAccessor) {
         var hover = valueAccessor();

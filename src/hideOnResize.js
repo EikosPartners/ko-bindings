@@ -1,37 +1,41 @@
 /*global define */
 import ko from 'knockout';
 import $ from 'jquery';
-   
-    
+
+/**
+ * TODO - description
+ * @module hideOnResize
+ */
+
     var initialized = false,
         resizeHandler;
-    
+
     ko.bindingHandlers.hideOnResize = {
         init: function (element, valueAccessor) {
             var actions = valueAccessor().actions,
                 more = valueAccessor().more;
-                
+
             if (resizeHandler) {
                 $(window).unbind('resize',resizeHandler);
             }
-            
+
             resizeHandler = checkWidth;
-            
-            $(window).resize(checkWidth)            
-            
+
+            $(window).resize(checkWidth)
+
             checkWidth();
-            
+
             ko.utils.domNodeDisposal.addDisposeCallback(element, function() {
                 $(window).unbind('resize', checkWidth);
             });
-            
+
             function checkWidth() {
                 if($(element).width() > ($(window).width()- 80)) {
                     //console.log('too big');
-                                        
+
                     var children = $(element).children().get();
                     children.reverse()
-                    children.reduce(function (width, element, i) { 
+                    children.reduce(function (width, element, i) {
                         var totalWidth = width + $(element).outerWidth();
                         //console.log('Calculating space:', totalWidth, $(window).width());
                         if(totalWidth >= $(window).width() - 200) {
@@ -47,11 +51,10 @@ import $ from 'jquery';
                     if (more().length) {
                         more().reverse();
                         actions((more.splice(0, more().length).concat(actions())));
-                        checkWidth();   
+                        checkWidth();
                     }
-                }            
+                }
             }
-            
+
         }
     };
-

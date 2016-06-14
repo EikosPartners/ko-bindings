@@ -1,6 +1,10 @@
 import ko from 'knockout';
 import $ from 'jquery';
-    
+
+/**
+ * TODO - description
+ * @module renderToPoint
+ */
 
     ko.bindingHandlers.renderToPoint = {
         init: function (element, valueAccessor, allBindings, bindingContext) {

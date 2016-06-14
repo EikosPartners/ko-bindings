@@ -10,9 +10,12 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * TODO - description
+ * @module showContainer
+ */
+
 /*global define */
-
-
 window.ko = _knockout2.default;
 
 /*

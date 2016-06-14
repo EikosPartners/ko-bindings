@@ -10,6 +10,11 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * TODO - description
+ * @module affix
+ */
+
 _knockout2.default.bindingHandlers.affix = {
     init: function init(element, valueAccessor) {
         var value = _knockout2.default.unwrap(valueAccessor());

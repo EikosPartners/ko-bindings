@@ -345,6 +345,11 @@ _jquery2.default.fn.splitter = function (args) {
     });
 };
 
+/**
+ * TODO - description
+ * @module splitter
+ */
+
 _knockout2.default.bindingHandlers.splitter = {
     init: function init(element, valueAccessor) {
         (0, _jquery2.default)(element).splitter({

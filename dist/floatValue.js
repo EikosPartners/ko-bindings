@@ -6,6 +6,11 @@ var _knockout2 = _interopRequireDefault(_knockout);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * TODO - description
+ * @module floatValue
+ */
+
 _knockout2.default.bindingHandlers.floatValue = {
     init: function init(element, valueAccessor) {
         var input = valueAccessor();

@@ -10,6 +10,11 @@ var _autosize2 = _interopRequireDefault(_autosize);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * TODO - description
+ * @module autosize
+ */
+
 _knockout2.default.bindingHandlers.autosize = {
     init: function init(element, valueAccessor) {
         function applyAutosize() {

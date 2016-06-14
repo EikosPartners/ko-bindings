@@ -1,10 +1,15 @@
 /*global define */
 import ko from 'knockout';
 import $ from 'jquery';
-    
+
+
+/**
+ * TODO - description
+ * @module showContainer
+ */
 
     window.ko = ko;
-    
+
     /*
      * valueAccessor
      * outer - element on which to bind click handler outside of element
@@ -17,14 +22,14 @@ import $ from 'jquery';
             valueAccessor
         ) {
             var options = valueAccessor(),
-                input = options.outer ? 
-                    $(element).closest(options.outer).get(0) 
+                input = options.outer ?
+                    $(element).closest(options.outer).get(0)
                     : $(element).find(options.inner).get(0),
                 $container = $(element).find(options.container),
                 container = $container.get(0);
 
             function showContainer() {
-                setTimeout(function() {                    
+                setTimeout(function() {
                     $container.fadeIn();
                     document.activeElement.blur();
                 })
@@ -33,7 +38,7 @@ import $ from 'jquery';
             function hideContainer() {
                 $container.fadeOut();
             }
-            
+
             //$container.on('mouseleave', hideContainer);
 
             ko.applyBindingsToNode(input, { click: showContainer });
@@ -43,4 +48,3 @@ import $ from 'jquery';
             //return { controlsDescendantBindings: true };
         }
     };
-

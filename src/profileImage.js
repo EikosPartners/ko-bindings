@@ -2,7 +2,11 @@
 import core from 'scalejs.core';
 import ko from 'knockout';
 import $ from 'jquery';
-     
+
+/**
+ * TODO - description
+ * @module profileImage
+ */
 
     var token,
         defaultUrl = '/gmep/images/default-profile-photo.png',
@@ -16,8 +20,8 @@ import $ from 'jquery';
              token = request.getResponseHeader('X-Oracle-RF-Token');
              callback();
            },
-           error: function (request, textStatus, errorThrown) {    
-            console.error('Error to get Token: '+errorThrown);    
+           error: function (request, textStatus, errorThrown) {
+            console.error('Error to get Token: '+errorThrown);
             callback();
            }
         });
@@ -33,7 +37,7 @@ import $ from 'jquery';
                 imageSrc = ko.observable({}),
                 size = allBindingsAccessor().size || 'small',
                 nameOnRight = allBindingsAccessor().nameOnRight || false;
-                
+
             function setProfileImage() {
                // at this point, if there is no user id or no token
                // then we should just show a default image.
@@ -44,7 +48,7 @@ import $ from 'jquery';
                    });
                    return;
                }
-               
+
                 $.ajax({
                    url: '/rest/api/gmep/share/profile/' + userId + '?utoken=' + token,
                    success: function (data) {
@@ -52,13 +56,13 @@ import $ from 'jquery';
                         imageUrl = get(json, 'profileResponse.imageURL.#text'),
                         initialName = get(json, 'profileResponse.initialName.#text'),
                         displayName = get(json, 'profileResponse.displayName.#text');
-                    
+
                     if (imageUrl) {
                        imageUrl = '/webcenter' + imageUrl;
                     } else if (!initialName) {
                         imageUrl = defaultUrl;
                     }
-                    
+
                     imageSrc({
                         initialName: initialName,
                         imageUrl: imageUrl,
@@ -66,7 +70,7 @@ import $ from 'jquery';
                         size: size,
                         nameOnRight: nameOnRight
                     });
-                    
+
                    },
                    error: function () {
                        imageSrc({
@@ -74,7 +78,7 @@ import $ from 'jquery';
                         size: size
                        });
                    }
-                });                 
+                });
             }
 
             ko.applyBindingsToNode(element, { template: { name: 'profile_picture_template', data: imageSrc } });
@@ -86,16 +90,16 @@ import $ from 'jquery';
             // otherwise, first get the token then set the profile iamge.
                 getToken(setProfileImage);
             }
-            
+
             return { controlsDescendantBindings: true };
         }
     };
-    
+
     //No pesky logs!
     ko.bindingHandlers.size = ko.bindingHandlers.size || {};
-    ko.bindingHandlers.nameOnRight = ko.bindingHandlers.nameOnRight || {};  
+    ko.bindingHandlers.nameOnRight = ko.bindingHandlers.nameOnRight || {};
 
-    function xmlToJson(xml) {        
+    function xmlToJson(xml) {
       // Create the return object
       var obj = {};
 
