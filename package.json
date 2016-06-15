@@ -1,12 +1,12 @@
 {
   "name": "ko-bindings",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Additional knockout bindings.",
   "main": "dist/ko-bindings.js",
   "scripts": {
     "build": "babel src/ --presets babel-preset-es2015 --out-dir dist/",
     "doc": "jsdoc -d ./doc/ src/",
-    "postinstall": "copyup dist/*.js ./"
+    "prepublish": "copyup dist/*.js ./"
   },
   "repository": {
     "type": "git",
