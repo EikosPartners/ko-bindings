@@ -16,16 +16,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /**
  * A knockout binding that is used to allow detection of clicking on another element i.e. "clicking off"
- * @example
- * return {
- *   clickOff: function() {
- *     alert('it works!');
- *   }
- * };
- * @param {function} handler - the function that is called when click off
- * @param {string[]|HTMLElement[]} includes - an array of class names or html dom elements that when clicked on will invoke the handler
- * @param {string[]|HTMLElement[]} excludes - an array of class names or html dom elements that when clicked on will *not* invoke the handler
- * @example
+ * @param {function} clickOff - the function that is called when click off
+ * @param {object} clickOff - a configuration object with additional parameters to modify the behaviour of click off
+ * @param {function} clickOff.handler -  the function that is called when click off
+ * @param {string[]|HTMLElement[]} [clickOff.includes] - an array of class names or html dom elements that when clicked on will invoke the handler
+ * @param {string[]|HTMLElement[]} [clickOff.excludes] - an array of class names or html dom elements that when clicked on will <strong>not</strong> invoke the handler
+ * 
+ * @example <caption>Passing a function to value accessor</caption>
+ * clickOff: function() {
+ *   alert('it works!');
+ * }
+ * @example <caption>Passing an object with includes and excludes</caption>
  * clickOff: {
  *    handler: function ( ) {
  *        alert('it works!');

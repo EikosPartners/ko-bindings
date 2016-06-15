@@ -16,21 +16,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 _knockout2.default.bindingHandlers.keepOpen = {
-    init: function init(element, valueAccessor) {
-        var $button = (0, _jquery2.default)(element),
-            $container = $button.closest('.row-actions-container'),
-            // make configurable
-        options = valueAccessor();
+  init: function init(element, valueAccessor) {
+    var $button = (0, _jquery2.default)(element),
+        $container = $button.closest('.row-actions-container'),
+        // make configurable
+    options = valueAccessor();
 
-        function openedContainer() {
-            $container.addClass('opened');
-        }
-
-        function closedContainer() {
-            $container.removeClass('opened');
-        }
-
-        _knockout2.default.applyBindingsToNode(element, { click: openedContainer });
-        _knockout2.default.applyBindingsToNode(element, { clickOff: closedContainer });
+    function openedContainer() {
+      $container.addClass('opened');
     }
+
+    function closedContainer() {
+      $container.removeClass('opened');
+    }
+
+    _knockout2.default.applyBindingsToNode(element, { click: openedContainer });
+    _knockout2.default.applyBindingsToNode(element, { clickOff: closedContainer });
+  }
 };
