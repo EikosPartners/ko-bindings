@@ -10,6 +10,11 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * TODO - description
+ * @module slideVisible
+ */
+
 _knockout2.default.bindingHandlers.slideVisible = {
     init: function init(element, valueAccessor) {
         var isVisible = _knockout2.default.unwrap(valueAccessor());

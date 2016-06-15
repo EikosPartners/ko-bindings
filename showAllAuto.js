@@ -12,6 +12,11 @@ require('knockout-jqAutocomplete');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * TODO - description
+ * @module showAllAuto
+ */
+
 _knockout2.default.bindingHandlers.jqAuto.options = {
     minLength: 0
 };

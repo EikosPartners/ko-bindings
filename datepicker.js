@@ -18,6 +18,11 @@ var _moment2 = _interopRequireDefault(_moment);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * TODO - description
+ * @module datepicker
+ */
+
 var clone = _scalejs2.default.object.clone;
 
 window.ko = _knockout2.default;
