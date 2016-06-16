@@ -1,12 +1,12 @@
 {
   "name": "ko-bindings",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Additional knockout bindings.",
   "main": "dist/ko-bindings.js",
   "scripts": {
     "build": "babel src/ --presets babel-preset-es2015 --out-dir dist/",
     "doc": "jsdoc -d ./doc/ src/",
-    "prepublish": "copyup dist/*.js ./",
+    "postinstall": "copyup dist/*.js ./",
     "test": "karma start test/karma_config/karma.config.js",
     "test-coverage": "rimraf test/coverage && karma start test/karma_config/karma.config.coverage.js"
   },
