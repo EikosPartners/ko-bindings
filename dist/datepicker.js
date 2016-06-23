@@ -25,8 +25,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var clone = _scalejs2.default.object.clone;
 
-window.ko = _knockout2.default;
-
 function getTimezoneOffset(date) {
     date.setTime(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
     return date;

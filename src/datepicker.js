@@ -10,8 +10,6 @@ import moment from 'moment';
 
     var clone = core.object.clone;
 
-    window.ko = ko
-
     function getTimezoneOffset(date) {
         date.setTime(date.getTime() + date.getTimezoneOffset()*60*1000);
         return date;

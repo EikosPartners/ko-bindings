@@ -15,15 +15,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @module showContainer
  */
 
-/*global define */
-window.ko = _knockout2.default;
-
 /*
  * valueAccessor
  * outer - element on which to bind click handler outside of element
  * inner - element on which to bind click handler inside of element
  * container - element to show or hidw
  */
+/*global define */
 _knockout2.default.bindingHandlers.showContainer = {
     init: function init(element, valueAccessor) {
         var options = valueAccessor(),

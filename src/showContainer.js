@@ -8,8 +8,6 @@ import $ from 'jquery';
  * @module showContainer
  */
 
-    window.ko = ko;
-
     /*
      * valueAccessor
      * outer - element on which to bind click handler outside of element
