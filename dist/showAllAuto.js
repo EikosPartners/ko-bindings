@@ -8,7 +8,7 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-require('knockout-jqAutocomplete');
+require('knockout-jqautocomplete/build/knockout-jqAutocomplete');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

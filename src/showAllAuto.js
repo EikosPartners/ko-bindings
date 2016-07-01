@@ -1,6 +1,6 @@
 import ko from 'knockout';
 import $ from 'jquery';
-import 'knockout-jqAutocomplete';
+import 'knockout-jqautocomplete/build/knockout-jqAutocomplete';
 
 /**
  * TODO - description

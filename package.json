@@ -1,6 +1,6 @@
 {
   "name": "ko-bindings",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Additional knockout bindings.",
   "main": "dist/ko-bindings.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "knockout": "^3.4.0",
     "moment": "^2.13.0",
     "pikaday": "^1.4.0",
-    "scalejs": "git+https://github.com/EikosPartners/scalejs.git#es6",
+    "scalejs": ">=0.4.1",
     "source-map-loader": "^0.1.5"
   },
   "devDependencies": {
