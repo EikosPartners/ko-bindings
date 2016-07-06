@@ -34,4 +34,3 @@ _knockout2.default.bindingHandlers.affix = {
         });
     }
 };
-//# sourceMappingURL=affix.js.map

@@ -35,4 +35,3 @@ _knockout2.default.bindingHandlers.slideVisible = {
         }
     }
 };
-//# sourceMappingURL=slideVisible.js.map

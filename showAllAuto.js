@@ -42,4 +42,3 @@ _knockout2.default.bindingHandlers.showAllAuto = {
         });
     }
 };
-//# sourceMappingURL=showAllAuto.js.map

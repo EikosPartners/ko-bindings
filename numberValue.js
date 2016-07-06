@@ -64,4 +64,3 @@ _knockout2.default.bindingHandlers.numberValue = {
         element.value = speedString;
     }
 };
-//# sourceMappingURL=numberValue.js.map

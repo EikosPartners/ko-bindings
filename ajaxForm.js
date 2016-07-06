@@ -22,4 +22,3 @@ _knockout2.default.bindingHandlers.ajaxForm = {
         (0, _jquery2.default)(element).ajaxForm(valueAccessor());
     }
 };
-//# sourceMappingURL=ajaxForm.js.map

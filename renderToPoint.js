@@ -26,4 +26,3 @@ _knockout2.default.bindingHandlers.renderToPoint = {
         }
     }
 };
-//# sourceMappingURL=renderToPoint.js.map

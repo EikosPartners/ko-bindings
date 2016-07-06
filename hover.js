@@ -40,4 +40,3 @@ _knockout2.default.bindingHandlers.hover = {
         });
     }
 };
-//# sourceMappingURL=hover.js.map

@@ -64,3 +64,4 @@ _knockout2.default.bindingHandlers.floatValue = {
         element.value = zoneString;
     }
 };
+//# sourceMappingURL=floatValue.js.map

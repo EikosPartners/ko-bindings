@@ -362,4 +362,3 @@ _knockout2.default.bindingHandlers.splitter = {
 };
 
 /*jslint ignore: end*/
-//# sourceMappingURL=splitter.js.map

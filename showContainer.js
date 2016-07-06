@@ -49,4 +49,3 @@ _knockout2.default.bindingHandlers.showContainer = {
         //return { controlsDescendantBindings: true };
     }
 };
-//# sourceMappingURL=showContainer.js.map

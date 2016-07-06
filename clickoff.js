@@ -151,4 +151,3 @@ function init(element, valueAccessor, allBindings, viewModel) {
 _knockout2.default.bindingHandlers.clickOff = {
     init: init
 };
-//# sourceMappingURL=clickoff.js.map

@@ -34,4 +34,3 @@ _knockout2.default.bindingHandlers.autosize = {
         });
     }
 };
-//# sourceMappingURL=autosize.js.map

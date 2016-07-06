@@ -8,10 +8,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /**
  * TODO - description
- * @module numberValue
+ * @module floatValue
  */
 
-_knockout2.default.bindingHandlers.numberValue = {
+_knockout2.default.bindingHandlers.floatValue = {
     init: function init(element, valueAccessor) {
         var input = valueAccessor();
 
@@ -26,22 +26,22 @@ _knockout2.default.bindingHandlers.numberValue = {
             console.log('New value: ', element.value);
             var valueArray = element.value.split(',');
 
-            input().map(function (speed, index) {
-                if (index < valueArray.length && parseInt(valueArray[index]) % 1 === 0) {
-                    speed.value(parseInt(valueArray[index], 10));
+            input().map(function (zone, index) {
+                if (index < valueArray.length && parseFloat(valueArray[index]) % 1 === 0) {
+                    zone.value(parseFloat(valueArray[index]));
                 } else {
-                    speed.value(parseInt(valueArray[valueArray.length - 1], 10));
+                    zone.value(parseFloat(valueArray[index - 1]));
                 }
             });
 
             if (valueArray.length > input().length) {
                 for (var i = input().length; i < valueArray.length; i++) {
-                    if (parseInt(valueArray[i]) % 1 === 0) {
+                    if (parseFloat(valueArray[i]) % 1 === 0) {
                         var item = {
-                            value: _knockout2.default.observable(parseInt(valueArray[i], 10))
+                            value: _knockout2.default.observable(parseFloat(valueArray[i]))
                         };
                         input.push(item);
-                        console.log(item.value, input());
+                        console.log(item.value, ":", input());
                     }
                 }
             }
@@ -55,13 +55,12 @@ _knockout2.default.bindingHandlers.numberValue = {
     },
     update: function update(element, valueAccessor) {
         var input = valueAccessor();
-        var speeds = input().map(function (speed) {
-            return speed.value();
+        var zones = input().map(function (zone) {
+            return zone.value();
         });
-        var speedString = speeds.join(',');
+        var zoneString = zones.join(',');
 
         // sets the value of the element to be the value of input
-        element.value = speedString;
+        element.value = zoneString;
     }
 };
-//# sourceMappingURL=numberValue.js.map

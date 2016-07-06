@@ -144,4 +144,3 @@ function xmlToJson(xml) {
     }
     return obj;
 }
-//# sourceMappingURL=profileImage.js.map

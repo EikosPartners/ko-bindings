@@ -34,4 +34,3 @@ _knockout2.default.bindingHandlers.keepOpen = {
     _knockout2.default.applyBindingsToNode(element, { clickOff: closedContainer });
   }
 };
-//# sourceMappingURL=keepOpen.js.map

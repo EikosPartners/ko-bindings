@@ -53,4 +53,3 @@ _knockout2.default.bindingHandlers.fixedTableHeader = {
         });
     }
 };
-//# sourceMappingURL=fixedTableHeader.js.map

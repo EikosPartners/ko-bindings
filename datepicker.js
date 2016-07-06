@@ -234,4 +234,3 @@ _knockout2.default.bindingHandlers.datepicker = {
         });
     }
 };
-//# sourceMappingURL=datepicker.js.map

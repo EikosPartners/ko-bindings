@@ -60,4 +60,3 @@ _knockout2.default.bindingHandlers.comment = {
 _knockout2.default.virtualElements.allowedBindings.comment = true;
 
 _scalejs2.default.registerExtension({ ko: _knockout2.default });
-//# sourceMappingURL=ko-bindings.js.map

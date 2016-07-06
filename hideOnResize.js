@@ -65,4 +65,3 @@ _knockout2.default.bindingHandlers.hideOnResize = {
         }
     }
 };
-//# sourceMappingURL=hideOnResize.js.map
