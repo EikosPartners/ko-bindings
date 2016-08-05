@@ -113,6 +113,11 @@ import moment from 'moment';
                 return !valid;
             }
 
+            function setDate(d) {
+                var date = moment(d).toDate();
+                picker.setDate(date, true);  
+            }
+
             if (date['disableDayFn']) {
                 day = date['disableDayFn'];
                 disableDayFn = function (d){
@@ -159,18 +164,20 @@ import moment from 'moment';
                 // need to account for timezone offset before
                 // date object returns from pikaday, else it's
                 // off by one day
-                var date = new Date(data());
-                    date = getTimezoneOffset(date);
-                    picker.setDate(date, true);
+                setDate(data());
+                // var date = new Date(data());
+                //     date = getTimezoneOffset(date);
+                //     picker.setDate(date, true);
             } else {
                 picker.setDate(data(),true)
             }
 
             raw.subscribe(function (d) {
                 if (typeof d === 'string') {
-                    var date = new Date(d);
-                    date = getTimezoneOffset(date);
-                    picker.setDate(date, true);
+                    //var date = new Date(d);
+                    //date = getTimezoneOffset(date);
+                    //picker.setDate(date, true);
+                    setDate(d);
                 } else {
                     picker.setDate(d, true);
                 }
