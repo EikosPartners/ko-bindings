@@ -56,6 +56,7 @@ import moment from 'moment';
                 yearRange, format, rawFormat, data, raw,
                 maxDate = ko.unwrap(date.maxDate),
                 minDate = ko.unwrap(date.minDate),
+                utc = date.utc,
                 picker,
                 previousValue,
                 disableDayFn,
@@ -90,8 +91,9 @@ import moment from 'moment';
             disableWeekends = date.disableWeekends;
             //binding data to observable
             date['onSelect'] = function (d) {
-                //data(d);
-                raw(this.getMoment().format(rawFormat));
+                let m = this.getMoment();
+                if (utc) { m = m.utc() }
+                raw(m.format(rawFormat));
                 errorObservable && errorObservable(null);
             }
 
@@ -114,7 +116,9 @@ import moment from 'moment';
             }
 
             function setDate(d) {
-                var date = moment(d).toDate();
+                var m = utc ? moment.utc : moment,
+                    date = m(d).toDate();
+                    
                 picker.setDate(date, true);  
             }
 
