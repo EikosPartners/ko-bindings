@@ -129,6 +129,11 @@ _knockout2.default.bindingHandlers.datepicker = {
             return !valid;
         }
 
+        function setDate(d) {
+            var date = (0, _moment2.default)(d).toDate();
+            picker.setDate(date, true);
+        }
+
         if (date['disableDayFn']) {
             day = date['disableDayFn'];
             disableDayFn = function disableDayFn(d) {
@@ -175,18 +180,20 @@ _knockout2.default.bindingHandlers.datepicker = {
             // need to account for timezone offset before
             // date object returns from pikaday, else it's
             // off by one day
-            var date = new Date(data());
-            date = getTimezoneOffset(date);
-            picker.setDate(date, true);
+            setDate(data());
+            // var date = new Date(data());
+            //     date = getTimezoneOffset(date);
+            //     picker.setDate(date, true);
         } else {
             picker.setDate(data(), true);
         }
 
         raw.subscribe(function (d) {
             if (typeof d === 'string') {
-                var date = new Date(d);
-                date = getTimezoneOffset(date);
-                picker.setDate(date, true);
+                //var date = new Date(d);
+                //date = getTimezoneOffset(date);
+                //picker.setDate(date, true);
+                setDate(d);
             } else {
                 picker.setDate(d, true);
             }
