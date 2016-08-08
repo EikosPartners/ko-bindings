@@ -72,6 +72,7 @@ _knockout2.default.bindingHandlers.datepicker = {
             raw,
             maxDate = _knockout2.default.unwrap(date.maxDate),
             minDate = _knockout2.default.unwrap(date.minDate),
+            utc = date.utc,
             picker,
             previousValue,
             disableDayFn,
@@ -106,8 +107,11 @@ _knockout2.default.bindingHandlers.datepicker = {
         disableWeekends = date.disableWeekends;
         //binding data to observable
         date['onSelect'] = function (d) {
-            //data(d);
-            raw(this.getMoment().format(rawFormat));
+            var m = this.getMoment();
+            if (utc) {
+                m = m.utc();
+            }
+            raw(m.format(rawFormat));
             errorObservable && errorObservable(null);
         };
 
@@ -130,7 +134,9 @@ _knockout2.default.bindingHandlers.datepicker = {
         }
 
         function setDate(d) {
-            var date = (0, _moment2.default)(d).toDate();
+            var m = utc ? _moment2.default.utc : _moment2.default,
+                date = m(d).toDate();
+
             picker.setDate(date, true);
         }
 
