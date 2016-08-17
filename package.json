@@ -1,6 +1,6 @@
 {
   "name": "ko-bindings",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Additional knockout bindings.",
   "main": "dist/ko-bindings.js",
   "scripts": {
@@ -28,7 +28,8 @@
     "moment": "^2.13.0",
     "pikaday": "^1.4.0",
     "scalejs": ">=0.4.1",
-    "source-map-loader": "^0.1.5"
+    "source-map-loader": "^0.1.5",
+    "jquery-tokeninput": "git+https://github.com/EikosPartners/jquery-tokeninput.git"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
