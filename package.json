@@ -21,15 +21,17 @@
   },
   "dependencies": {
     "copyfiles": "^0.2.1",
+    "fullcalendar": "^3.0.0-beta",
     "jquery": "^3.0.0",
     "jquery-form": "^3.50.0",
+    "jquery-tokeninput": "git+https://github.com/EikosPartners/jquery-tokeninput.git",
     "karma-webpack": "^1.7.0",
     "knockout": "^3.4.0",
     "moment": "^2.13.0",
     "pikaday": "^1.4.0",
     "scalejs": ">=0.4.1",
     "source-map-loader": "^0.1.5",
-    "jquery-tokeninput": "git+https://github.com/EikosPartners/jquery-tokeninput.git"
+    "timepicker": "^1.11.1"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",

@@ -17,6 +17,8 @@ import './fixedTableHeader';
 import './autosize';
 import './ajaxForm';
 import './keepOpen';
+import './fullCalendar';
+import './timepicker';
 
 /**
  * TODO - description

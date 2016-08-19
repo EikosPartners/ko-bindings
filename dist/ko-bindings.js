@@ -42,6 +42,10 @@ require('./ajaxForm');
 
 require('./keepOpen');
 
+require('./fullCalendar');
+
+require('./timepicker');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
