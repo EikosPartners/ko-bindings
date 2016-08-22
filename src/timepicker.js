@@ -5,6 +5,7 @@ import 'timepicker/jquery.timepicker.min.css';
 
     ko.bindingHandlers.timepicker = {
         init: function (element, valueAccessor) {
+            console.warning('Two way binding not implemented in timepicker');
             var options = valueAccessor();
             var data = options.data;
             var picker = $(element).timepicker(options);
