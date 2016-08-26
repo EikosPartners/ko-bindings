@@ -21,13 +21,21 @@ _knockout2.default.bindingHandlers.timepicker = {
         var picker = (0, _jquery2.default)(element).timepicker(options);
 
         if (_knockout2.default.isObservable(data)) {
+            //set initial values
+            if (data()) {
+                (0, _jquery2.default)(element).timepicker('setTime', data());
+            } else {
+                data((0, _jquery2.default)(element).timepicker('getTime'));
+            }
+
             picker.on('change', function () {
                 data((0, _jquery2.default)(element).timepicker('getTime'));
             });
-            data((0, _jquery2.default)(element).timepicker('getTime'));
             data.subscribe(function (newTime) {
-                $element.timepicker('setTime', newTime);
+                (0, _jquery2.default)(element).timepicker('setTime', newTime);
             });
+        } else if (data) {
+            (0, _jquery2.default)(element).timepicker('setTime', data);
         }
     }
 };

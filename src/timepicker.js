@@ -10,13 +10,21 @@ import 'timepicker/jquery.timepicker.min.css';
             var picker = $(element).timepicker(options);
 
             if(ko.isObservable(data)) {
+              //set initial values
+              if(data()) {
+                  $(element).timepicker('setTime', data());
+              } else {
+                  data($(element).timepicker('getTime'));
+              }
+
               picker.on('change', function() {
                 data($(element).timepicker('getTime'));
               });
-              data($(element).timepicker('getTime'));
               data.subscribe(function (newTime) {
-                  $element.timepicker('setTime', newTime);
+                  $(element).timepicker('setTime', newTime);
               })
-            }
+          } else if(data) {
+              $(element).timepicker('setTime', data);
+          }
         }
     };
