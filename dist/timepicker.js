@@ -25,6 +25,9 @@ _knockout2.default.bindingHandlers.timepicker = {
                 data((0, _jquery2.default)(element).timepicker('getTime'));
             });
             data((0, _jquery2.default)(element).timepicker('getTime'));
+            data.subscribe(function (newTime) {
+                $element.timepicker('setTime', newTime);
+            });
         }
     }
 };
