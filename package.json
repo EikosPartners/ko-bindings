@@ -1,6 +1,6 @@
 {
   "name": "ko-bindings",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Additional knockout bindings.",
   "main": "dist/ko-bindings.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "doc": "jsdoc -d ./doc/ src/",
     "postinstall": "copyup dist/*.js dist/*.map ./",
     "test": "karma start test/karma_config/karma.config.js",
-    "test-coverage": "rimraf test/coverage && karma start test/karma_config/karma.config.coverage.js"
+    "test-coverage": "rimraf test/coverage && karma start test/karma_config/karma.config.coverage.js",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
