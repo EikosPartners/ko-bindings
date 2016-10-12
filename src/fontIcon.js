@@ -13,13 +13,22 @@ ko.bindingHandlers.fontIcon = {
         let prefix = globalMetadata()['font-prefix'];
         let iconClass = valueAccessor();
         let classes = element.classList;
+        let previousClass;
 
         if (typeof iconClass === 'string') {
-            iconclass = prefix ? prefix + '-' + iconClass : iconClass;
+            iconClass = prefix ? prefix + '-' + iconClass : iconClass;
+            previousClass = ko.utils.domData.get(element, 'previousClass');
             
+            //check to see if a previous class was applied, has changed, and is still on element, then remove
+            if (previousClass && previousClass !== iconClass && classes.contains(previousClass)) {
+                classes.remove(previousClass);
+            }
+
             if (prefix && !classes.contains(prefix + '-' + iconClass)) {
                 classes.add(iconClass)
-            } 
+            }
+
+            ko.utils.domData.set(element, 'previousClass', iconClass); 
         }
 
         if (typeof iconClass === 'object') {
