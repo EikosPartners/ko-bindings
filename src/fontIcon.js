@@ -39,9 +39,9 @@ ko.bindingHandlers.fontIcon = {
             
 
             Object.keys(iconClass).forEach(function(key){
-                if (classes.contains(key) && !ko.unwrap(iconClasses[key])) {
+                if (classes.contains(key) && !ko.unwrap(iconClass[key])) {
                     classes.remove(key);
-                 } else if (!classes.contains(key) && ko.unwrap(iconClasses[key])) {
+                 } else if (!classes.contains(key) && ko.unwrap(iconClass[key])) {
                      classes.add(key);
                  }
             });
