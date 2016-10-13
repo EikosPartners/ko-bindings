@@ -31,6 +31,7 @@
     "moment": "^2.13.0",
     "pikaday": "^1.4.0",
     "scalejs": ">=0.4.1",
+    "scalejs.metadataFactory": ">=0.1.8",
     "source-map-loader": "^0.1.5",
     "timepicker": "^1.11.1"
   },
