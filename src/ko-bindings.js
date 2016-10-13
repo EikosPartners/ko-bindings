@@ -19,6 +19,7 @@ import './ajaxForm';
 import './keepOpen';
 import './fullCalendar';
 import './timepicker';
+import './fontIcon';
 
 /**
  * TODO - description
