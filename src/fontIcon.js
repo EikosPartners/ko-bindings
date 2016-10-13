@@ -1,5 +1,5 @@
 import { globalMetadata } from 'scalejs.metadataFactory';
-import { unwrap } from 'knockout';
+import ko from 'knockout';
 
 ko.bindingHandlers.fontIcon = {
     init: function (element, valueAccessor) {
@@ -39,9 +39,9 @@ ko.bindingHandlers.fontIcon = {
             
 
             Object.keys(iconClass).forEach(function(key){
-                if (classes.contains(key) && !unwrap(iconClasses[key])) {
+                if (classes.contains(key) && !ko.unwrap(iconClasses[key])) {
                     classes.remove(key);
-                 } else if (!classes.contains(key) && unwrap(iconClasses[key])) {
+                 } else if (!classes.contains(key) && ko.unwrap(iconClasses[key])) {
                      classes.add(key);
                  }
             });
