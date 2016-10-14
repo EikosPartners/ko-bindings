@@ -226,6 +226,9 @@ _knockout2.default.bindingHandlers.datepicker = {
             // if the user removes the date, update the input value to blank
             if (element.value === '') {
                 data('');
+                previousValue = '';
+                errorObservable && errorObservable(null);
+                return;
             }
             dateObject = new Date(element.value);
             // if the user enters a disabled date on the datepicker, set the customError messahe

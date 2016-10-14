@@ -118,8 +118,8 @@ import moment from 'moment';
             function setDate(d) {
                 var m = utc ? moment.utc : moment,
                     date = m(d).toDate();
-                    
-                picker.setDate(date, true);  
+
+                picker.setDate(date, true);
             }
 
             if (date['disableDayFn']) {
@@ -204,7 +204,12 @@ import moment from 'moment';
                 // by returning if the user did not input a different value
                 if(element.value === previousValue) { return; }
                 // if the user removes the date, update the input value to blank
-                if(element.value === '') { data(''); }
+                if(element.value === '') {
+                    data('');
+                    previousValue = '';
+                    errorObservable && errorObservable(null);
+                    return;
+                }
                 dateObject = new Date(element.value);
                 // if the user enters a disabled date on the datepicker, set the customError messahe
                 if((disableDayFn && disableDayFn(dateObject)) || (disableWeekends && [0,6].indexOf(dateObject.getDay()) !== -1)) {
