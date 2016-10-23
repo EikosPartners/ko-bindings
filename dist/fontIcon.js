@@ -6,7 +6,11 @@ var _scalejs = require('scalejs.metadataFactory');
 
 var _knockout = require('knockout');
 
-ko.bindingHandlers.fontIcon = {
+var _knockout2 = _interopRequireDefault(_knockout);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_knockout2.default.bindingHandlers.fontIcon = {
     init: function init(element, valueAccessor) {
         var prefix = (0, _scalejs.globalMetadata)()['font-prefix'] || 'fa';
 
@@ -22,7 +26,7 @@ ko.bindingHandlers.fontIcon = {
 
         if (typeof iconClass === 'string') {
             iconClass = prefix + '-' + iconClass;
-            previousClass = ko.utils.domData.get(element, 'previousClass');
+            previousClass = _knockout2.default.utils.domData.get(element, 'previousClass');
 
             //check to see if a previous class was applied, has changed, and is still on element, then remove
             if (previousClass && previousClass !== iconClass && classes.contains(previousClass)) {
@@ -33,7 +37,7 @@ ko.bindingHandlers.fontIcon = {
                 classes.add(iconClass);
             }
 
-            ko.utils.domData.set(element, 'previousClass', iconClass);
+            _knockout2.default.utils.domData.set(element, 'previousClass', iconClass);
         }
 
         if ((typeof iconClass === 'undefined' ? 'undefined' : _typeof(iconClass)) === 'object') {
@@ -43,9 +47,9 @@ ko.bindingHandlers.fontIcon = {
             });
 
             Object.keys(iconClass).forEach(function (key) {
-                if (classes.contains(key) && !(0, _knockout.unwrap)(iconClasses[key])) {
+                if (classes.contains(key) && !_knockout2.default.unwrap(iconClass[key])) {
                     classes.remove(key);
-                } else if (!classes.contains(key) && (0, _knockout.unwrap)(iconClasses[key])) {
+                } else if (!classes.contains(key) && _knockout2.default.unwrap(iconClass[key])) {
                     classes.add(key);
                 }
             });
