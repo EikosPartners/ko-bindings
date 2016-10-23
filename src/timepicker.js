@@ -10,13 +10,17 @@ ko.bindingHandlers.timepicker = {
         var data = options.data;
         var format = options.format || '';
         var picker = $(element).timepicker(options);
+        var time;
 
         if (ko.isObservable(data)) {
             //set initial values
             if (data()) {
                 $(element).timepicker('setTime', moment(data(), format).toDate());
-            } else {
-                data(moment($(element).timepicker('getTime')).format(format));
+            } else { 
+                time = $(element).timepicker('getTime'); // Does this ever return a value?
+                if (time) {
+                    data(moment(time).format(format));
+                }
             }
 
             picker.on('change', function () {
@@ -24,9 +28,14 @@ ko.bindingHandlers.timepicker = {
             });
             data.subscribe(function (newTime) {
                 $(element).timepicker('setTime', moment(newTime, format).toDate());
-            })
+            });
         } else if (data) {
             $(element).timepicker('setTime', moment(data, format).toDate());
         }
+
+        picker.on('showTimepicker', function() {
+            $('.ui-timepicker-wrapper').outerWidth($(element).outerWidth());
+        })
+
     }
 };

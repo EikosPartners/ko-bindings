@@ -24,13 +24,17 @@ _knockout2.default.bindingHandlers.timepicker = {
         var data = options.data;
         var format = options.format || '';
         var picker = (0, _jquery2.default)(element).timepicker(options);
+        var time;
 
         if (_knockout2.default.isObservable(data)) {
             //set initial values
             if (data()) {
                 (0, _jquery2.default)(element).timepicker('setTime', (0, _moment2.default)(data(), format).toDate());
             } else {
-                data((0, _moment2.default)((0, _jquery2.default)(element).timepicker('getTime')).format(format));
+                time = (0, _jquery2.default)(element).timepicker('getTime'); // Does this ever return a value?
+                if (time) {
+                    data((0, _moment2.default)(time).format(format));
+                }
             }
 
             picker.on('change', function () {
@@ -42,6 +46,10 @@ _knockout2.default.bindingHandlers.timepicker = {
         } else if (data) {
             (0, _jquery2.default)(element).timepicker('setTime', (0, _moment2.default)(data, format).toDate());
         }
+
+        picker.on('showTimepicker', function () {
+            (0, _jquery2.default)('ui-timepicker-wrapper').outerWidth((0, _jquery2.default)(element).outerWidth());
+        });
     }
 };
 //# sourceMappingURL=timepicker.js.map
