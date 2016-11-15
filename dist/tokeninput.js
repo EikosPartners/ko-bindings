@@ -109,4 +109,6 @@ _knockout2.default.bindingHandlers.tokeninputDisable = {
 };
 
 _knockout2.default.bindingHandlers.tokeninputOptions = {};
+
+_knockout2.default.bindingHandlers.tokeninputValue = {};
 //# sourceMappingURL=tokeninput.js.map

@@ -48,7 +48,7 @@ _knockout2.default.bindingHandlers.timepicker = {
         }
 
         picker.on('showTimepicker', function () {
-            (0, _jquery2.default)('ui-timepicker-wrapper').outerWidth((0, _jquery2.default)(element).outerWidth());
+            (0, _jquery2.default)('.ui-timepicker-wrapper').outerWidth((0, _jquery2.default)(element).outerWidth());
         });
     }
 };
