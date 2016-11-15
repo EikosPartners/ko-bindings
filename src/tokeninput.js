@@ -105,3 +105,5 @@ import 'jquery-tokeninput/styles/token-input.css';
     };
 
     ko.bindingHandlers.tokeninputOptions = {};
+
+    ko.bindingHandlers.tokeninputValue = {};
