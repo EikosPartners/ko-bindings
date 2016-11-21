@@ -38,7 +38,12 @@ _knockout2.default.bindingHandlers.timepicker = {
             }
 
             picker.on('change', function () {
-                data((0, _moment2.default)((0, _jquery2.default)(element).timepicker('getTime')).format(format));
+                var newValue = (0, _moment2.default)((0, _jquery2.default)(element).timepicker('getTime'));
+                if (newValue.isValid()) {
+                    data(newValue.format(format));
+                } else {
+                    data('');
+                }
             });
             data.subscribe(function (newTime) {
                 (0, _jquery2.default)(element).timepicker('setTime', (0, _moment2.default)(newTime, format).toDate());
