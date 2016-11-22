@@ -134,9 +134,14 @@ _knockout2.default.bindingHandlers.datepicker = {
         }
 
         function setDate(d) {
-            var m = utc ? _moment2.default.utc : _moment2.default,
-                date = m(d).toDate();
+            var date, m;
 
+            if (!d) {
+                date = null;
+            } else {
+                m = utc ? _moment2.default.utc : _moment2.default;
+                date = m(d).toDate();
+            }
             picker.setDate(date, true);
         }
 
