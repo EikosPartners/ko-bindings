@@ -65,6 +65,7 @@ _knockout2.default.bindingHandlers.datepicker = {
         var date = clone(valueAccessor()),
             errorObservable = date.errorObservable,
             errorMessage = date.errorMessage || 'Date is disabled',
+            disableInput = date.disableInput,
             yearRange,
             format,
             rawFormat,
@@ -216,10 +217,11 @@ _knockout2.default.bindingHandlers.datepicker = {
             picker.el.addEventListener('mousedown', picker._onMouseDown, true);
         }
 
-        //prevent user keypresses
-        // element.onkeydown = function (event) {
-        //     event.preventDefault();
-        // }
+        if (disableInput) {
+            element.onkeydown = function (event) {
+                event.preventDefault();
+            };
+        }
 
         element.addEventListener('blur', function (event) {
             var dateObject;

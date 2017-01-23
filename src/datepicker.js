@@ -53,6 +53,7 @@ ko.bindingHandlers.datepicker = {
         var date = clone(valueAccessor()),
             errorObservable = date.errorObservable,
             errorMessage = date.errorMessage || 'Date is disabled',
+            disableInput = date.disableInput,
             yearRange, format, rawFormat, data, raw,
             maxDate = ko.unwrap(date.maxDate),
             minDate = ko.unwrap(date.minDate),
@@ -118,7 +119,7 @@ ko.bindingHandlers.datepicker = {
         function setDate(d) {
             var date,
                 m;
-                
+
             if (!d) {
                 date = null;
             } else {
@@ -199,10 +200,11 @@ ko.bindingHandlers.datepicker = {
             picker.el.addEventListener('mousedown', picker._onMouseDown, true);
         }
 
-        //prevent user keypresses
-        // element.onkeydown = function (event) {
-        //     event.preventDefault();
-        // }
+        if (disableInput) {
+            element.onkeydown = function (event) {
+                event.preventDefault();
+            }
+        }
 
         element.addEventListener('blur', function (event) {
             var dateObject;
