@@ -24,21 +24,27 @@ _knockout2.default.bindingHandlers.timepicker = {
         var data = options.data;
         var format = options.format || '';
         var picker = (0, _jquery2.default)(element).timepicker(options);
-        var time;
+        var m = _moment2.default,
+            time = void 0;
+
+        if (options.utc) {
+            m = m.utc;
+        }
 
         if (_knockout2.default.isObservable(data)) {
             //set initial values
             if (data()) {
-                (0, _jquery2.default)(element).timepicker('setTime', (0, _moment2.default)(data(), format).toDate());
+                (0, _jquery2.default)(element).timepicker('setTime', m(data(), format).toDate());
             } else {
                 time = (0, _jquery2.default)(element).timepicker('getTime'); // Does this ever return a value?
                 if (time) {
-                    data((0, _moment2.default)(time).format(format));
+                    data(m(time).format(format));
                 }
             }
 
             picker.on('change', function () {
-                var newValue = (0, _moment2.default)((0, _jquery2.default)(element).timepicker('getTime'));
+                var newValue = m((0, _jquery2.default)(element).timepicker('getTime'));
+
                 if (newValue.isValid()) {
                     data(newValue.format(format));
                 } else {
@@ -46,10 +52,10 @@ _knockout2.default.bindingHandlers.timepicker = {
                 }
             });
             data.subscribe(function (newTime) {
-                (0, _jquery2.default)(element).timepicker('setTime', (0, _moment2.default)(newTime, format).toDate());
+                (0, _jquery2.default)(element).timepicker('setTime', m(newTime, format).toDate());
             });
         } else if (data) {
-            (0, _jquery2.default)(element).timepicker('setTime', (0, _moment2.default)(data, format).toDate());
+            (0, _jquery2.default)(element).timepicker('setTime', m(data, format).toDate());
         }
 
         picker.on('showTimepicker', function () {

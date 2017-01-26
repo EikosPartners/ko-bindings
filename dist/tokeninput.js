@@ -25,8 +25,8 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
         var params = valueAccessor(),
             bindings = allBindings(),
             $selectedElement = (0, _jquery2.default)(element),
-            value = bindings.tokeninputValue || _knockout2.default.observable(),
-            tokeninputUpdating = false,
+            value = bindings.tokeninputValue || _knockout2.default.observable();
+        var tokeninputUpdating = false,
             reinit = false;
 
         function getOptions() {
@@ -51,21 +51,21 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
         }
 
         function onResult(results) {
-            //console.log('Results -->', results);
+            // console.log('Results -->', results);
             return results.filter(function (result) {
                 return !value().includes(result.id);
             });
         }
 
         function onAdd(added) {
-            //console.log('Add -->', added);
+            // console.log('Add -->', added);
             tokeninputUpdating = true;
             value.push(added.id);
             tokeninputUpdating = false;
         }
 
         function onDelete(deleted) {
-            //console.log('Delete -->', deleted);
+            // console.log('Delete -->', deleted);
             if (reinit) {
                 return;
             }
@@ -92,10 +92,14 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
         // if (options.placeholder) {
         //     $selectedElement.parent().find('input').attr('placeholder', options.placeholder);
         // }
+
+        _knockout2.default.utils.domNodeDisposal.addDisposeCallback(element, function () {
+            $selectedElement.tokenInput('destroy');
+        });
     },
-    update: function update(element, valueAccessor, allBindings) {
+    update: function update(element, valueAccessor) {
         var params = valueAccessor();
-        //console.log('new params-->', params);
+        // console.log('new params-->', params);
         (0, _jquery2.default)(element).data('settings').local_data = params;
     }
 };
