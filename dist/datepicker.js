@@ -147,15 +147,17 @@ _knockout2.default.bindingHandlers.datepicker = {
         }
 
         if (date['disableDayFn']) {
-            day = date['disableDayFn'];
-            disableDayFn = function disableDayFn(d) {
-                if (d.getDate() == day) {
-                    return dateInRange(d);
-                } else {
-                    return true;
-                }
-            };
-            date['disableDayFn'] = disableDayFn;
+            if (typeof date['disableDayFn'] !== 'function') {
+                day = date['disableDayFn'];
+                disableDayFn = function disableDayFn(d) {
+                    if (d.getDate() == day) {
+                        return dateInRange(d);
+                    } else {
+                        return true;
+                    }
+                };
+                date['disableDayFn'] = disableDayFn;
+            }
         } else {
             if (minDate || maxDate) {
                 disableDayFn = dateInRange;
