@@ -130,15 +130,17 @@ ko.bindingHandlers.datepicker = {
         }
 
         if (date['disableDayFn']) {
-            day = date['disableDayFn'];
-            disableDayFn = function (d) {
-                if (d.getDate() == day) {
-                    return dateInRange(d);
-                } else {
-                    return true;
+            if (typeof date['disableDayFn'] !== 'function') {
+                day = date['disableDayFn'];
+                disableDayFn = function (d) {
+                    if (d.getDate() == day) {
+                        return dateInRange(d);
+                    } else {
+                        return true;
+                    }
                 }
+                date['disableDayFn'] = disableDayFn;
             }
-            date['disableDayFn'] = disableDayFn;
         } else {
             if (minDate || maxDate) {
                 disableDayFn = dateInRange;
