@@ -8,9 +8,9 @@ var _knockout = require('knockout');
 
 var _knockout2 = _interopRequireDefault(_knockout);
 
-var _pikaday = require('pikaday');
+var _pikadayTime = require('pikaday-time');
 
-var _pikaday2 = _interopRequireDefault(_pikaday);
+var _pikadayTime2 = _interopRequireDefault(_pikadayTime);
 
 var _moment = require('moment');
 
@@ -115,6 +115,14 @@ _knockout2.default.bindingHandlers.datepicker = {
             raw(m.format(rawFormat));
             errorObservable && errorObservable(null);
         };
+        date['container'] = document.querySelector(date['container']);
+
+        if (date['datepickerOptions']) {
+            Object.keys(date['datepickerOptions']).forEach(function (opt) {
+                date[opt] = date['datepickerOptions'][opt];
+            });
+        }
+        delete date['datepickerOptions'];
 
         minDate = parseDateExpression(minDate);
         maxDate = parseDateExpression(maxDate);
@@ -188,7 +196,7 @@ _knockout2.default.bindingHandlers.datepicker = {
             }
             */
 
-        picker = new _pikaday2.default(date);
+        picker = new _pikadayTime2.default(date);
 
         if (typeof data() === 'string') {
             // need to account for timezone offset before
@@ -223,37 +231,44 @@ _knockout2.default.bindingHandlers.datepicker = {
             element.onkeydown = function (event) {
                 event.preventDefault();
             };
+        } else {
+            /* When using these options: 
+                rawFormat: 'YYYY-MM-DDTHH:mm:ss[Z]',
+                format: 'DD MMMM YYYY, hh:mm A [GMT]',
+                utc: true
+            we run into the issue where the blur handler updates the date incorrectly.
+            Temporarily resolved by removing event handler for disabled inputs, since 
+            we currently don't need blur in this project.
+             */
+            element.addEventListener('blur', function (event) {
+                var dateObject;
+                // prevent issues with selecting dropdown value on pikaday control
+                // by returning if the user did not input a different value
+                if (element.value === previousValue) {
+                    return;
+                }
+                // if the user removes the date, update the input value to blank
+                if (element.value === '') {
+                    data('');
+                    previousValue = '';
+                    errorObservable && errorObservable(null);
+                    return;
+                }
+                dateObject = new Date(element.value);
+                // if the user enters a disabled date on the datepicker, set the customError messahe
+                if (disableDayFn && disableDayFn(dateObject) || disableWeekends && [0, 6].indexOf(dateObject.getDay()) !== -1) {
+                    //element.value = previousValue; //uncomment if you want disable date to be removed automatically
+                    errorObservable && errorObservable(errorMessage);
+                    return;
+                } else {
+                    errorObservable && errorObservable(null);
+                }
+                // store previous value, fixes bug with selecting year from dropdown
+                previousValue = element.value;
+                // finally, the user has updated the date and needs to be set
+                picker.setDate(element.value);
+            });
         }
-
-        element.addEventListener('blur', function (event) {
-            var dateObject;
-            // prevent issues with selecting dropdown value on pikaday control
-            // by returning if the user did not input a different value
-            if (element.value === previousValue) {
-                return;
-            }
-            // if the user removes the date, update the input value to blank
-            if (element.value === '') {
-                data('');
-                previousValue = '';
-                errorObservable && errorObservable(null);
-                return;
-            }
-            dateObject = new Date(element.value);
-            // if the user enters a disabled date on the datepicker, set the customError messahe
-            if (disableDayFn && disableDayFn(dateObject) || disableWeekends && [0, 6].indexOf(dateObject.getDay()) !== -1) {
-                //element.value = previousValue; //uncomment if you want disable date to be removed automatically
-                errorObservable && errorObservable(errorMessage);
-                return;
-            } else {
-                errorObservable && errorObservable(null);
-            }
-            // store previous value, fixes bug with selecting year from dropdown
-            previousValue = element.value;
-            // finally, the user has updated the date and needs to be set
-            picker.setDate(element.value);
-        });
-
         _knockout2.default.utils.domNodeDisposal.addDisposeCallback(element, function () {
             picker.destroy();
         });
