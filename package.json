@@ -1,6 +1,6 @@
 {
   "name": "ko-bindings",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "description": "Additional knockout bindings.",
   "main": "dist/ko-bindings.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "knockout": "^3.4.0",
     "moment": "^2.13.0",
     "pikaday": "^1.4.0",
+    "pikaday-time": "^1.5.1",
     "scalejs": ">=0.4.1",
     "scalejs.metadataFactory": ">=0.1.8",
     "source-map-loader": "^0.1.5",
