@@ -5,6 +5,7 @@
   "main": "dist/ko-bindings.js",
   "scripts": {
     "build": "babel src/ --presets babel-preset-es2015 --out-dir dist/ --source-maps",
+    "build:publish": "node build.js",
     "doc": "jsdoc -d ./doc/ src/",
     "test": "karma start test/karma_config/karma.config.js",
     "test-coverage": "rimraf test/coverage && karma start test/karma_config/karma.config.coverage.js"
@@ -31,6 +32,7 @@
     "pikaday-time": "^1.5.1",
     "scalejs": ">=0.4.1",
     "scalejs.metadataFactory": ">=0.1.8",
+    "simple-git": "^1.65.0",
     "source-map-loader": "^0.1.5",
     "timepicker": "^1.11.1"
   },
