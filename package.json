@@ -1,6 +1,6 @@
 {
   "name": "ko-bindings",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "Additional knockout bindings.",
   "main": "dist/ko-bindings.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "fullcalendar": "^3.0.0-beta",
     "jquery": "^3.0.0",
     "jquery-form": "^3.50.0",
-    "jquery-tokeninput": "git+https://github.com/EikosPartners/jquery-tokeninput.git",
+    "ep-jquery-tokeninput": "~1.8.4",
     "karma-webpack": "^1.7.0",
     "knockout": "^3.4.0",
     "moment": "^2.13.0",

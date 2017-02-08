@@ -2,8 +2,8 @@ import { merge } from 'scalejs';
 import $ from 'jquery';
 import ko from 'knockout';
 import _ from 'lodash';
-import 'jquery-tokeninput';
-import 'jquery-tokeninput/styles/token-input.css';
+import 'ep-jquery-tokeninput';
+import 'ep-jquery-tokeninput/styles/token-input.css';
 
 ko.bindingHandlers.tokeninputSource = {
     init: function (
