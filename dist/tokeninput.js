@@ -14,9 +14,9 @@ var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-require('jquery-tokeninput');
+require('ep-jquery-tokeninput');
 
-require('jquery-tokeninput/styles/token-input.css');
+require('ep-jquery-tokeninput/styles/token-input.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
