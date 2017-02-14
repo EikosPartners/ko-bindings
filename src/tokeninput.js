@@ -14,7 +14,8 @@ ko.bindingHandlers.tokeninputSource = {
         const params = valueAccessor(),
             bindings = allBindings(),
             $selectedElement = $(element),
-            value = bindings.tokeninputValue || ko.observable();
+            value = bindings.tokeninputValue || ko.observable(),
+            tokenInputOptions = bindings.tokenInputOptions || {};
         let tokeninputUpdating = false, //prevent update on programatic update
             tokeninputDestroying = false, //prevent update on re-init or destroy
             reinit = false; // prevent update on re-init
@@ -35,7 +36,7 @@ ko.bindingHandlers.tokeninputSource = {
                 searchingText: null,
                 disabled: ko.unwrap(bindings.tokeninputDisable),
                 prePopulate: params.filter(result => (value() || []).includes(result.id))
-            }, bindings.tokenInputOptions);
+            }, tokenInputOptions);
         }
 
         function onResult(results) {
@@ -73,8 +74,8 @@ ko.bindingHandlers.tokeninputSource = {
                 init();
                 reinit = false;
             } else if (!tokeninputDestroying) {
-                if (bindings.tokenInputOptions.onChange) {
-                    bindings.tokenInputOptions.onChange();
+                if (tokenInputOptions.onChange) {
+                    tokenInputOptions.onChange();
                 }
             }
         });
@@ -107,6 +108,29 @@ ko.bindingHandlers.tokeninputDisable = {
         const isDisabled = valueAccessor();
 
         $(element).tokenInput('toggleDisabled', ko.unwrap(isDisabled));
+    }
+};
+
+ko.bindingHandlers.tokeninputTokens = {
+    init: function (
+        element,
+        valueAccessor
+    ) {
+        const tokens = valueAccessor();
+        let lastTokens = tokens().slice();
+
+        tokens.subscribe((newTokens) => {
+            ko.utils.compareArrays(lastTokens, newTokens)
+                .forEach((difference) => {
+                    if (difference.status === 'added') {
+                        $(element).tokenInput('add', difference.value);
+                    }
+                    if (difference.status === 'deleted') {
+                        $(element).tokenInput('remove', difference.value);
+                    }
+                });
+            lastTokens = newTokens.slice();
+        });
     }
 };
 
