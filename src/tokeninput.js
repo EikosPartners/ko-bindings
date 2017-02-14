@@ -15,8 +15,9 @@ ko.bindingHandlers.tokeninputSource = {
             bindings = allBindings(),
             $selectedElement = $(element),
             value = bindings.tokeninputValue || ko.observable();
-        let tokeninputUpdating = false,
-            reinit = false;
+        let tokeninputUpdating = false, //prevent update on programatic update
+            tokeninputDestroying = false, //prevent update on re-init or destroy
+            reinit = false; // prevent update on re-init
 
         function getOptions() {
             return merge({
@@ -71,6 +72,10 @@ ko.bindingHandlers.tokeninputSource = {
                 $selectedElement.tokenInput('destroy');
                 init();
                 reinit = false;
+            } else if (!tokeninputDestroying) {
+                if (bindings.tokenInputOptions.onChange) {
+                    bindings.tokenInputOptions.onChange();
+                }
             }
         });
 
@@ -79,7 +84,9 @@ ko.bindingHandlers.tokeninputSource = {
         // }
 
         ko.utils.domNodeDisposal.addDisposeCallback(element, () => {
+            tokeninputDestroying = true;
             $selectedElement.tokenInput('destroy');
+            tokeninputDestroying = false;
         });
     },
     update: function (
