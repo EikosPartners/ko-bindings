@@ -14,9 +14,9 @@ ko.bindingHandlers.tokeninputSource = {
         const params = valueAccessor(),
             bindings = allBindings(),
             $selectedElement = $(element),
-            value = bindings.tokeninputValue || ko.observable(),
-            tokeninputOptions = bindings.tokeninputOptions || {};
-        let tokeninputUpdating = false, //prevent update on programatic update
+            value = bindings.tokeninputValue || ko.observable();
+        let tokeninputOptions = bindings.tokeninputOptions || {},
+            tokeninputUpdating = false, //prevent update on programatic update
             tokeninputDestroying = false, //prevent update on re-init or destroy
             reinit = false; // prevent update on re-init
 
