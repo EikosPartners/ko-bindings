@@ -39,9 +39,9 @@ ko.bindingHandlers.tokeninputSource = {
             }, tokeninputOptions);
         }
 
-        if (bindings.tokeninputOptions) {
+        if (bindings.tokenInputOptions) {
             console.error('tokenInputOptions is depricated, please use tokeninputOptions');
-            tokeninputOptions = tokenInputOptions;
+            tokeninputOptions = bindings.tokenInputOptions;
         }
 
         function onResult(results) {
