@@ -15,7 +15,7 @@ ko.bindingHandlers.tokeninputSource = {
             bindings = allBindings(),
             $selectedElement = $(element),
             value = bindings.tokeninputValue || ko.observable(),
-            tokenInputOptions = bindings.tokenInputOptions || {};
+            tokeninputOptions = bindings.tokeninputOptions || {};
         let tokeninputUpdating = false, //prevent update on programatic update
             tokeninputDestroying = false, //prevent update on re-init or destroy
             reinit = false; // prevent update on re-init
@@ -36,7 +36,12 @@ ko.bindingHandlers.tokeninputSource = {
                 searchingText: null,
                 disabled: ko.unwrap(bindings.tokeninputDisable),
                 prePopulate: params.filter(result => (value() || []).includes(result.id))
-            }, tokenInputOptions);
+            }, tokeninputOptions);
+        }
+
+        if (bindings.tokeninputOptions) {
+            console.error('tokenInputOptions is depricated, please use tokeninputOptions');
+            tokeninputOptions = tokenInputOptions;
         }
 
         function onResult(results) {
@@ -74,8 +79,8 @@ ko.bindingHandlers.tokeninputSource = {
                 init();
                 reinit = false;
             } else if (!tokeninputDestroying) {
-                if (tokenInputOptions.onChange) {
-                    tokenInputOptions.onChange();
+                if (tokeninputOptions.onChange) {
+                    tokeninputOptions.onChange();
                 }
             }
         });
