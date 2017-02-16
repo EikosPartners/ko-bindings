@@ -35,7 +35,7 @@ ko.bindingHandlers.tokeninputSource = {
                 noResultsText: null,
                 searchingText: null,
                 disabled: ko.unwrap(bindings.tokeninputDisable),
-                prePopulate: params.filter(result => (value() || []).includes(result.id))
+                prePopulate: valueAccessor().filter(result => (value() || []).includes(result.id))
             }, tokeninputOptions);
         }
 
@@ -99,9 +99,14 @@ ko.bindingHandlers.tokeninputSource = {
         element,
         valueAccessor
     ) {
-        const params = valueAccessor();
+        const params = valueAccessor(),
+            value = allBindings().tokeninputValue;
         // console.log('new params-->', params);
         $(element).data('settings').local_data = params;
+
+        if (ko.isObservable(value) && value().length > 0) {
+            value.valueHasMutated();
+        }
     }
 };
 
