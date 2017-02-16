@@ -97,7 +97,8 @@ ko.bindingHandlers.tokeninputSource = {
     },
     update: function (
         element,
-        valueAccessor
+        valueAccessor,
+        allBindings
     ) {
         const params = valueAccessor(),
             value = allBindings().tokeninputValue;
