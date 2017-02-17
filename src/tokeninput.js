@@ -107,6 +107,10 @@ ko.bindingHandlers.tokeninputSource = {
 
         if (ko.isObservable(value) && value().length > 0) {
             value.valueHasMutated();
+            // redudancy because local_data is set after initialization
+            // but if there was some initial values, we want to redo prepoulate logic
+            // so we need to reset local_data as again after initialization we want to make sure it is set
+            $(element).data('settings').local_data = params;
         }
     }
 };
