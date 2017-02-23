@@ -1,6 +1,6 @@
 {
   "name": "ko-bindings",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "description": "Additional knockout bindings.",
   "main": "dist/ko-bindings.js",
   "scripts": {
