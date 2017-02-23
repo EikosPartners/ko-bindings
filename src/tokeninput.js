@@ -58,7 +58,7 @@ ko.bindingHandlers.tokeninputSource = {
 
         function onDelete(deleted) {
             // console.log('Delete -->', deleted);
-            if (reinit) {
+            if (reinit || tokeninputDestroying) {
                 return;
             }
             tokeninputUpdating = true;
