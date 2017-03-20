@@ -133,6 +133,11 @@ ko.bindingHandlers.datepicker = {
             } else {
                 m = utc ? moment.utc : moment;
                 date = m(d).toDate();
+
+                // toDate returns UTC timestamp, but we already have it accounted for, so we need to adjust
+                if (utc) {
+                    date = new Date(date.getTime() + (date.getTimezoneOffset() * 60000));
+                }
             }
             picker.setDate(date, true);
         }

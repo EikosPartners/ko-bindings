@@ -26,8 +26,12 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
             bindings = allBindings(),
             $selectedElement = (0, _jquery2.default)(element),
             value = bindings.tokeninputValue || _knockout2.default.observable();
-        var tokeninputUpdating = false,
-            reinit = false;
+        var tokeninputOptions = bindings.tokeninputOptions || {},
+            tokeninputUpdating = false,
+            //prevent update on programatic update
+        tokeninputDestroying = false,
+            //prevent update on re-init or destroy
+        reinit = false; // prevent update on re-init
 
         function getOptions() {
             return (0, _scalejs.merge)({
@@ -44,10 +48,15 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
                 noResultsText: null,
                 searchingText: null,
                 disabled: _knockout2.default.unwrap(bindings.tokeninputDisable),
-                prePopulate: params.filter(function (result) {
+                prePopulate: valueAccessor().filter(function (result) {
                     return (value() || []).includes(result.id);
                 })
-            }, bindings.tokenInputOptions);
+            }, tokeninputOptions);
+        }
+
+        if (bindings.tokenInputOptions) {
+            console.error('tokenInputOptions is depricated, please use tokeninputOptions');
+            tokeninputOptions = bindings.tokenInputOptions;
         }
 
         function onResult(results) {
@@ -66,7 +75,7 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
 
         function onDelete(deleted) {
             // console.log('Delete -->', deleted);
-            if (reinit) {
+            if (reinit || tokeninputDestroying) {
                 return;
             }
             tokeninputUpdating = true;
@@ -86,6 +95,10 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
                 $selectedElement.tokenInput('destroy');
                 init();
                 reinit = false;
+            } else if (!tokeninputDestroying) {
+                if (tokeninputOptions.onChange) {
+                    tokeninputOptions.onChange();
+                }
             }
         });
 
@@ -94,13 +107,24 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
         // }
 
         _knockout2.default.utils.domNodeDisposal.addDisposeCallback(element, function () {
+            tokeninputDestroying = true;
             $selectedElement.tokenInput('destroy');
+            tokeninputDestroying = false;
         });
     },
-    update: function update(element, valueAccessor) {
-        var params = valueAccessor();
+    update: function update(element, valueAccessor, allBindings) {
+        var params = valueAccessor(),
+            value = allBindings().tokeninputValue;
         // console.log('new params-->', params);
         (0, _jquery2.default)(element).data('settings').local_data = params;
+
+        if (_knockout2.default.isObservable(value) && value().length > 0) {
+            value.valueHasMutated();
+            // redudancy because local_data is set after initialization
+            // but if there was some initial values, we want to redo prepoulate logic
+            // so we need to reset local_data as again after initialization we want to make sure it is set
+            (0, _jquery2.default)(element).data('settings').local_data = params;
+        }
     }
 };
 
@@ -109,6 +133,25 @@ _knockout2.default.bindingHandlers.tokeninputDisable = {
         var isDisabled = valueAccessor();
 
         (0, _jquery2.default)(element).tokenInput('toggleDisabled', _knockout2.default.unwrap(isDisabled));
+    }
+};
+
+_knockout2.default.bindingHandlers.tokeninputTokens = {
+    init: function init(element, valueAccessor) {
+        var tokens = valueAccessor();
+        var lastTokens = tokens().slice();
+
+        tokens.subscribe(function (newTokens) {
+            _knockout2.default.utils.compareArrays(lastTokens, newTokens).forEach(function (difference) {
+                if (difference.status === 'added') {
+                    (0, _jquery2.default)(element).tokenInput('add', difference.value);
+                }
+                if (difference.status === 'deleted') {
+                    (0, _jquery2.default)(element).tokenInput('remove', difference.value);
+                }
+            });
+            lastTokens = newTokens.slice();
+        });
     }
 };
 

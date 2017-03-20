@@ -150,6 +150,11 @@ _knockout2.default.bindingHandlers.datepicker = {
             } else {
                 m = utc ? _moment2.default.utc : _moment2.default;
                 date = m(d).toDate();
+
+                // toDate returns UTC timestamp, but we already have it accounted for, so we need to adjust
+                if (utc) {
+                    date = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+                }
             }
             picker.setDate(date, true);
         }
