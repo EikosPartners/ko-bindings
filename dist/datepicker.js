@@ -66,6 +66,7 @@ _knockout2.default.bindingHandlers.datepicker = {
             errorObservable = date.errorObservable,
             errorMessage = date.errorMessage || 'Date is disabled',
             disableInput = date.disableInput,
+            inputExceptions = disableInput && disableInput.exceptions,
             yearRange,
             format,
             rawFormat,
@@ -229,8 +230,24 @@ _knockout2.default.bindingHandlers.datepicker = {
 
         if (disableInput) {
             element.onkeydown = function (event) {
-                event.preventDefault();
+                if (inputExceptions) {
+                    if (inputExceptions.indexOf(event.keyCode) === -1) {
+                        event.preventDefault();
+                    }
+                } else {
+                    event.preventDefault();
+                }
             };
+            if (inputExceptions) {
+                element.addEventListener('blur', function (event) {
+                    if (element.value === '' || !(0, _moment2.default)(element.value).isValid()) {
+                        data('');
+                        previousValue = '';
+                        errorObservable && errorObservable(null);
+                        return;
+                    }
+                });
+            }
         } else {
             /* When using these options: 
                 rawFormat: 'YYYY-MM-DDTHH:mm:ss[Z]',

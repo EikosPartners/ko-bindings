@@ -54,6 +54,7 @@ ko.bindingHandlers.datepicker = {
             errorObservable = date.errorObservable,
             errorMessage = date.errorMessage || 'Date is disabled',
             disableInput = date.disableInput,
+            inputExceptions = disableInput && disableInput.exceptions,
             yearRange, format, rawFormat, data, raw,
             maxDate = ko.unwrap(date.maxDate),
             minDate = ko.unwrap(date.minDate),
@@ -211,8 +212,24 @@ ko.bindingHandlers.datepicker = {
         }
 
         if (disableInput) {
-            element.onkeydown = function (event) {
-                event.preventDefault();
+           element.onkeydown = function (event) {
+                if (inputExceptions) {
+                    if (inputExceptions.indexOf(event.keyCode) === -1) {
+                        event.preventDefault();
+                    }
+                } else {
+                    event.preventDefault();
+                }
+            };
+             if (inputExceptions) {
+                element.addEventListener('blur', function (event) {
+                    if (element.value === '' || !(moment(element.value).isValid())) {
+                        data('');
+                        previousValue = '';
+                        errorObservable && errorObservable(null);
+                        return;
+                    }
+                });
             }
         } else {
             /* When using these options: 
