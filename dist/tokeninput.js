@@ -31,7 +31,9 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
             //prevent update on programatic update
         tokeninputDestroying = false,
             //prevent update on re-init or destroy
-        reinit = false; // prevent update on re-init
+        reinit = false,
+            // prevent update on re-init
+        sub = null;
 
         function getOptions() {
             return (0, _scalejs.merge)({
@@ -89,7 +91,7 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
 
         init();
 
-        value.subscribe(function () {
+        sub = value.subscribe(function () {
             if (!tokeninputUpdating) {
                 reinit = true;
                 $selectedElement.tokenInput('destroy');
@@ -110,6 +112,7 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
             tokeninputDestroying = true;
             $selectedElement.tokenInput('destroy');
             tokeninputDestroying = false;
+            sub.dispose();
         });
     },
     update: function update(element, valueAccessor, allBindings) {
@@ -139,9 +142,10 @@ _knockout2.default.bindingHandlers.tokeninputDisable = {
 _knockout2.default.bindingHandlers.tokeninputTokens = {
     init: function init(element, valueAccessor) {
         var tokens = valueAccessor();
-        var lastTokens = tokens().slice();
+        var lastTokens = tokens().slice(),
+            sub = null;
 
-        tokens.subscribe(function (newTokens) {
+        sub = tokens.subscribe(function (newTokens) {
             _knockout2.default.utils.compareArrays(lastTokens, newTokens).forEach(function (difference) {
                 if (difference.status === 'added') {
                     (0, _jquery2.default)(element).tokenInput('add', difference.value);
@@ -151,6 +155,10 @@ _knockout2.default.bindingHandlers.tokeninputTokens = {
                 }
             });
             lastTokens = newTokens.slice();
+        });
+
+        _knockout2.default.utils.domNodeDisposal.addDisposeCallback(element, function () {
+            sub.dispose();
         });
     }
 };
