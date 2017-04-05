@@ -14,7 +14,8 @@ ko.bindingHandlers.tokeninputSource = {
         const params = valueAccessor(),
             bindings = allBindings(),
             $selectedElement = $(element),
-            value = bindings.tokeninputValue || ko.observable();
+            value = bindings.tokeninputValue || ko.observable(),
+            toggleSelection = bindings.tokeninputToggleSelection;
         let tokeninputOptions = bindings.tokeninputOptions || {},
             tokeninputUpdating = false, //prevent update on programatic update
             tokeninputDestroying = false, //prevent update on re-init or destroy
@@ -53,6 +54,13 @@ ko.bindingHandlers.tokeninputSource = {
         function onAdd(added) {
             // console.log('Add -->', added);
             tokeninputUpdating = true;
+            if (added.id === toggleSelection) {
+                value.removeAll();
+                $selectedElement.tokenInput("clear");
+            } else if (value().includes(toggleSelection)) {
+                value.removeAll([toggleSelection]);
+                $selectedElement.tokenInput("remove", {id: toggleSelection});
+            }
             value.push(added.id);
             tokeninputUpdating = false;
         }

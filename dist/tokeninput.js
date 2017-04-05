@@ -25,7 +25,8 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
         var params = valueAccessor(),
             bindings = allBindings(),
             $selectedElement = (0, _jquery2.default)(element),
-            value = bindings.tokeninputValue || _knockout2.default.observable();
+            value = bindings.tokeninputValue || _knockout2.default.observable(),
+            toggleSelection = bindings.tokeninputToggleSelection;
         var tokeninputOptions = bindings.tokeninputOptions || {},
             tokeninputUpdating = false,
             //prevent update on programatic update
@@ -71,6 +72,13 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
         function onAdd(added) {
             // console.log('Add -->', added);
             tokeninputUpdating = true;
+            if (added.id === toggleSelection) {
+                value.removeAll();
+                $selectedElement.tokenInput("clear");
+            } else if (value().includes(toggleSelection)) {
+                value.removeAll([toggleSelection]);
+                $selectedElement.tokenInput("remove", { id: toggleSelection });
+            }
             value.push(added.id);
             tokeninputUpdating = false;
         }
