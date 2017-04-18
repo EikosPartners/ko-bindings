@@ -91,6 +91,9 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
             tokeninputUpdating = true;
             value.remove(deleted.id);
             tokeninputUpdating = false;
+            if (tokeninputOptions.onTokenDelete) {
+                tokeninputOptions.onTokenDelete.apply(this, arguments);
+            }
         }
 
         function init() {
