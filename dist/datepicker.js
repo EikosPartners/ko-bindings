@@ -217,6 +217,7 @@ _knockout2.default.bindingHandlers.datepicker = {
             if (d === rawValue) {
                 return;
             }
+            rawValue = d;
             if (typeof d === 'string') {
                 //var date = new Date(d);
                 //date = getTimezoneOffset(date);

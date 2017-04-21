@@ -198,6 +198,7 @@ ko.bindingHandlers.datepicker = {
 
         raw.subscribe(function (d) {
             if (d === rawValue) { return; }
+            rawValue = d;
             if (typeof d === 'string') {
                 //var date = new Date(d);
                 //date = getTimezoneOffset(date);
