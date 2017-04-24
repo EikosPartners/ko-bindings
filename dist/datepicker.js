@@ -67,6 +67,7 @@ _knockout2.default.bindingHandlers.datepicker = {
             errorMessage = date.errorMessage || 'Date is disabled',
             disableInput = date.disableInput,
             inputExceptions = disableInput && disableInput.exceptions,
+            preventUtcUpdate = date.preventUtcUpdate,
             yearRange,
             format,
             rawFormat,
@@ -155,6 +156,10 @@ _knockout2.default.bindingHandlers.datepicker = {
                 date = null;
             } else {
                 m = utc ? _moment2.default.utc : _moment2.default;
+                if (preventUtcUpdate) {
+                    var utcOffset = new Date(d).getTimezoneOffset();
+                    d = _moment2.default.utc(d).add(utcOffset, 'minutes').format();
+                }
                 date = m(d).toDate();
             }
             picker.setDate(date, true);

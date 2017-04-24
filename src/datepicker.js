@@ -55,6 +55,7 @@ ko.bindingHandlers.datepicker = {
             errorMessage = date.errorMessage || 'Date is disabled',
             disableInput = date.disableInput,
             inputExceptions = disableInput && disableInput.exceptions,
+            preventUtcUpdate = date.preventUtcUpdate,
             yearRange, format, rawFormat, data, raw,
             maxDate = ko.unwrap(date.maxDate),
             minDate = ko.unwrap(date.minDate),
@@ -138,6 +139,10 @@ ko.bindingHandlers.datepicker = {
                 date = null;
             } else {
                 m = utc ? moment.utc : moment;
+                if (preventUtcUpdate) {
+                    var utcOffset = new Date(d).getTimezoneOffset();
+                    d = moment.utc(d).add(utcOffset, 'minutes').format();
+                }
                 date = m(d).toDate();
             }
             picker.setDate(date, true);
