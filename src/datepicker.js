@@ -64,7 +64,8 @@ ko.bindingHandlers.datepicker = {
             disableDayFn,
             disableWeekends,
             day,
-            rawValue;
+            rawValue,
+            datepickerUpdating;
 
         if (!ko.isObservable(date.data)) {
             console.error('Datepicker data must be bound to an observable');
@@ -97,7 +98,9 @@ ko.bindingHandlers.datepicker = {
             let m = this.getMoment();
             if (utc) { m = m.utc() }
             rawValue = m.format(rawFormat);
+            datepickerUpdating = true;
             raw(rawValue);
+            datepickerUpdating = false;
             errorObservable && errorObservable(null);
         };
          date['container'] = document.querySelector(date['container']);
@@ -198,7 +201,7 @@ ko.bindingHandlers.datepicker = {
 
         raw.subscribe(function (d) {
             if (d === rawValue) { return; }
-            rawValue = d;
+            if( !datepickerUpdating) { rawValue = d; }
             if (typeof d === 'string') {
                 //var date = new Date(d);
                 //date = getTimezoneOffset(date);

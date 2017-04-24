@@ -80,7 +80,8 @@ _knockout2.default.bindingHandlers.datepicker = {
             disableDayFn,
             disableWeekends,
             day,
-            rawValue;
+            rawValue,
+            datepickerUpdating;
 
         if (!_knockout2.default.isObservable(date.data)) {
             console.error('Datepicker data must be bound to an observable');
@@ -115,7 +116,9 @@ _knockout2.default.bindingHandlers.datepicker = {
                 m = m.utc();
             }
             rawValue = m.format(rawFormat);
+            datepickerUpdating = true;
             raw(rawValue);
+            datepickerUpdating = false;
             errorObservable && errorObservable(null);
         };
         date['container'] = document.querySelector(date['container']);
@@ -217,7 +220,9 @@ _knockout2.default.bindingHandlers.datepicker = {
             if (d === rawValue) {
                 return;
             }
-            rawValue = d;
+            if (!datepickerUpdating) {
+                rawValue = d;
+            }
             if (typeof d === 'string') {
                 //var date = new Date(d);
                 //date = getTimezoneOffset(date);
