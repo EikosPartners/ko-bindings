@@ -142,7 +142,7 @@ ko.bindingHandlers.tokeninputDisable = {
     ) {
         const isDisabled = ko.unwrap(valueAccessor());
 
-        $(element).tokenInput('toggleDisabled', ko.unwrap(isDisabled));
+        $(element).tokenInput('toggleDisabled', ko.unwrap(isDisabled) || false);
     }
 };
 
