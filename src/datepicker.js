@@ -235,7 +235,7 @@ ko.bindingHandlers.datepicker = {
             };
              if (inputExceptions) {
                 element.addEventListener('blur', function (event) {
-                    if (element.value === '' || !(moment(element.value).isValid())) {
+                    if (element.value === '' || !(moment(element.value, date.format).isValid())) {
                         data('');
                         previousValue = '';
                         errorObservable && errorObservable(null);

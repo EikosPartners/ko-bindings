@@ -256,7 +256,7 @@ _knockout2.default.bindingHandlers.datepicker = {
             };
             if (inputExceptions) {
                 element.addEventListener('blur', function (event) {
-                    if (element.value === '' || !(0, _moment2.default)(element.value).isValid()) {
+                    if (element.value === '' || !(0, _moment2.default)(element.value, date.format).isValid()) {
                         data('');
                         previousValue = '';
                         errorObservable && errorObservable(null);

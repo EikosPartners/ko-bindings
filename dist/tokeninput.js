@@ -133,7 +133,14 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
         (0, _jquery2.default)(element).data('settings').local_data = params;
 
         if (_knockout2.default.isObservable(value) && value().length > 0) {
+            var resetModified = false;
+            if (value.isModified && !value.isModified()) {
+                resetModified = true;
+            }
             value.valueHasMutated();
+            if (resetModified) {
+                value.isModified(false);
+            }
             // redudancy because local_data is set after initialization
             // but if there was some initial values, we want to redo prepoulate logic
             // so we need to reset local_data as again after initialization we want to make sure it is set
@@ -144,9 +151,9 @@ _knockout2.default.bindingHandlers.tokeninputSource = {
 
 _knockout2.default.bindingHandlers.tokeninputDisable = {
     update: function update(element, valueAccessor) {
-        var isDisabled = valueAccessor();
+        var isDisabled = _knockout2.default.unwrap(valueAccessor());
 
-        (0, _jquery2.default)(element).tokenInput('toggleDisabled', _knockout2.default.unwrap(isDisabled));
+        (0, _jquery2.default)(element).tokenInput('toggleDisabled', _knockout2.default.unwrap(isDisabled) || false);
     }
 };
 
